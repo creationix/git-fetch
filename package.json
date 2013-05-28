@@ -1,0 +1,29 @@
+{
+  "name": "git-fetch",
+  "version": "0.0.0",
+  "description": "A codec for fetching a git repo over tcp.",
+  "main": "fetch.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/creationix/git-fetch.git"
+  },
+  "keywords": [
+    "min-stream",
+    "git",
+    "fetch"
+  ],
+  "author": "Tim Caswell <tim@creationix.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/creationix/git-fetch/issues"
+  },
+  "dependencies": {
+    "bops": "~0.0.6"
+  },
+  "devDependencies": {
+  }
+}
