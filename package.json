@@ -1,6 +1,6 @@
 {
   "name": "git-fetch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A codec for fetching a git repo over tcp.",
   "main": "fetch.js",
   "scripts": {
