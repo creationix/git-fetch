@@ -47,7 +47,9 @@ module.exports = function (options, callback) {
       var pending = {};
       function find(oid, ready) {
         if (seen[oid]) ready(null, seen[oid]);
-        else pending[oid] = ready;
+        else {
+          (pending[oid] = pending[oid] || []).push(ready);
+        }
       }
 
       callback(null, {
@@ -59,8 +61,12 @@ module.exports = function (options, callback) {
           .push(hydratePack(find))
           .map(function (item) {
             seen[item.hash] = item;
-            if (pending[item.hash]) {
-              pending[item.hash](null, item);
+            var list = pending[item.hash];
+            if (list) {
+              pending[item.hash] = [];
+              list.forEach(function (ready) {
+                ready(null, item);
+              });
             }
             return item;
           }),
