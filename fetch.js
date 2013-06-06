@@ -2,7 +2,6 @@ var pktLine = require('git-pkt-line');
 var listPack = require('git-list-pack/min.js');
 var demux = require('min-stream/demux.js');
 var chain = require('min-stream/chain.js');
-var bops = require('bops');
 var hydratePack = require('git-hydrate-pack');
 
 
@@ -39,7 +38,15 @@ module.exports = function (options, callback) {
         clientCaps.push("include-tag");
       }
 
-      write(null, ["want", refs.HEAD].concat(clientCaps).join(" ") + "\n");
+      if (!options.want) {
+        options.want = Object.keys(refs)
+      }
+
+      options.want.forEach(function (ref, i) {
+        var command = ["want", refs[ref]];
+        if (i === 0) command = command.concat(clientCaps);
+        write(null, command.join(" ") + "\n");
+      });
       write(null, null);
       write(null, "done");
 
@@ -79,6 +86,8 @@ module.exports = function (options, callback) {
     return output;
   };
 };
+
+
 
 
 function consumeTill(read, check, callback) {

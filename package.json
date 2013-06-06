@@ -1,6 +1,6 @@
 {
   "name": "git-fetch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A codec for fetching a git repo over tcp.",
   "main": "fetch.js",
   "scripts": {
@@ -22,7 +22,6 @@
     "url": "https://github.com/creationix/git-fetch/issues"
   },
   "dependencies": {
-    "bops": "~0.0.6"
   },
   "devDependencies": {
   }
